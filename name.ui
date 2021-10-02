@@ -16,7 +16,7 @@
   <property name="sizeGripEnabled">
    <bool>false</bool>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="file">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -42,6 +42,9 @@
     <font>
      <pointsize>15</pointsize>
     </font>
+   </property>
+   <property name="locale">
+    <locale language="Chinese" country="China"/>
    </property>
    <property name="text">
     <string>请选择班级excel(需包含学号以及姓名)</string>

@@ -16,14 +16,15 @@ class Ui_Dialog(object):
         Dialog.setObjectName("Dialog")
         Dialog.resize(640, 480)
         Dialog.setSizeGripEnabled(False)
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(450, 50, 91, 51))
-        self.pushButton.setObjectName("pushButton")
+        self.file = QtWidgets.QPushButton(Dialog)
+        self.file.setGeometry(QtCore.QRect(450, 50, 91, 51))
+        self.file.setObjectName("file")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(50, 30, 361, 81))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.label.setFont(font)
+        self.label.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.label.setTextFormat(QtCore.Qt.AutoText)
         self.label.setObjectName("label")
 
@@ -33,5 +34,5 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton.setText(_translate("Dialog", "file"))
+        self.file.setText(_translate("Dialog", "file"))
         self.label.setText(_translate("Dialog", "请选择班级excel(需包含学号以及姓名)"))
