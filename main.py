@@ -1,8 +1,10 @@
+#encoding=utf-8
+
 import sys
 from PyQt5.QtWidgets import QApplication,QDialog,QFileDialog
 from name import *
+from sql import *
 from read import getdata
-
 
 class CDialog(QDialog,Ui_Dialog):
     def __init__(self,parent=None):
@@ -14,6 +16,13 @@ class CDialog(QDialog,Ui_Dialog):
         directory = QFileDialog.getOpenFileName()
         file=str(directory[0]).split(",")[0]
         getdata(file)
+
+
+
+
+
+
+
 if __name__=="__main__":
     app=QtWidgets.QApplication(sys.argv)
     Widget=CDialog()
