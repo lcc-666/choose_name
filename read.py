@@ -9,5 +9,16 @@ def getdata(file):
     conn = create_engine('mysql+pymysql://root:NRAHbsqt941@121.196.244.215:3306/name', encoding='utf8')
     # 写入数据，table_name为表名，‘replace’表示如果同名表存在就替换掉
     pd.io.sql.to_sql(df, file, conn, if_exists='replace')
+    classes(file)
 
+def classes(file):
+    f=open("classes.txt","a+",encoding="utf8")
+    f.write(file+"\n")
 
+def get_class():
+    f=open("classes.txt","r",encoding="utf-8")
+    ls=[]
+    for line in f.readlines():
+        ls.append(line.replace("\n",""))
+    return ls
+get_class()
