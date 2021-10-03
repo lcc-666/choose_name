@@ -4,6 +4,7 @@ import sys
 from PyQt5.QtWidgets import QApplication,QDialog,QFileDialog
 from name import *
 from init import *
+import time
 from read import getdata
 
 class CDialog(QDialog,Ui_Dialog):
@@ -20,17 +21,18 @@ class CDialog(QDialog,Ui_Dialog):
         else:
             dialogB = init_Dialog()
             dialogB.exec()
-            # getdata(file)
-            dialogB.close
-
+            getdata(file)
 
 class init_Dialog(QDialog,Ui_initDialog):
     def __init__(self,parent=None):
         super(init_Dialog, self).__init__(parent)
         self.setupUi(self)
+        self.ok.clicked.connect(self.close)
+
 
 if __name__=="__main__":
     app=QtWidgets.QApplication(sys.argv)
     Widget=CDialog()
     Widget.show()
     sys.exit(app.exec_())
+
