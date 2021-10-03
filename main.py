@@ -1,12 +1,14 @@
 #encoding=utf-8
 
 import sys
+import random
 from PyQt5.QtWidgets import QApplication,QDialog,QFileDialog
 from name import *
 from init import *
 from choose import *
 from success import *
 from read import *
+from sql import *
 
 #导入成功
 class success(QDialog,Ui_suDialog):
@@ -15,7 +17,6 @@ class success(QDialog,Ui_suDialog):
         self.setupUi(self)
         self.start.clicked.connect(self.choose)
         self.coun.clicked.connect(self.close)
-
     def choose(self):
         self.close()
         dialog=csDialog()
@@ -43,7 +44,7 @@ class CDialog(QDialog,Ui_Dialog):
         else:
             dialogB = init_Dialog()
             dialogB.exec()
-            getdata(file)
+            classes(file)
             dialogB=success()
             dialogB.exec()
 
@@ -52,15 +53,19 @@ class CDialog(QDialog,Ui_Dialog):
         dialog=csDialog()
         dialog.exec()
 
-#选择界面
+#选择班级界面
 class csDialog(QDialog,Ui_choose):
     def __init__(self,parent=None):
         super(csDialog, self).__init__()
         self.setupUi(self)
         self.comboBox.addItems(get_class())
+        self.cscs.clicked.connect(self.choose_class)
     def choose_class(self):
-        pass
-
+        class_id=self.comboBox.currentText()
+        ls_name=tongxue(class_id)
+        name=random.choice(ls_name)
+        ls_name.remove(name)
+        print(name)
 
 #初始化等待界面
 class init_Dialog(QDialog,Ui_initDialog):
@@ -68,15 +73,6 @@ class init_Dialog(QDialog,Ui_initDialog):
         super(init_Dialog, self).__init__()
         self.setupUi(self)
         self.ok.clicked.connect(self.close)
-
-
-
-
-
-
-
-
-
 
 if __name__=="__main__":
     app=QtWidgets.QApplication(sys.argv)

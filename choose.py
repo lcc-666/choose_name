@@ -22,7 +22,7 @@ class Ui_choose(object):
         self.comboBox.setFont(font)
         self.comboBox.setObjectName("comboBox")
         self.cscs = QtWidgets.QPushButton(choose)
-        self.cscs.setGeometry(QtCore.QRect(380, 50, 141, 61))
+        self.cscs.setGeometry(QtCore.QRect(380, 50, 151, 71))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.cscs.setFont(font)
@@ -34,4 +34,4 @@ class Ui_choose(object):
     def retranslateUi(self, choose):
         _translate = QtCore.QCoreApplication.translate
         choose.setWindowTitle(_translate("choose", "Dialog"))
-        self.cscs.setText(_translate("choose", "选择班级"))
+        self.cscs.setText(_translate("choose", "开始随机点名"))
