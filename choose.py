@@ -27,6 +27,12 @@ class Ui_choose(object):
         font.setPointSize(14)
         self.cscs.setFont(font)
         self.cscs.setObjectName("cscs")
+        self.exit = QtWidgets.QPushButton(choose)
+        self.exit.setGeometry(QtCore.QRect(380, 200, 161, 81))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.exit.setFont(font)
+        self.exit.setObjectName("exit")
 
         self.retranslateUi(choose)
         QtCore.QMetaObject.connectSlotsByName(choose)
@@ -35,3 +41,4 @@ class Ui_choose(object):
         _translate = QtCore.QCoreApplication.translate
         choose.setWindowTitle(_translate("choose", "Dialog"))
         self.cscs.setText(_translate("choose", "开始随机点名"))
+        self.exit.setText(_translate("choose", "结束"))

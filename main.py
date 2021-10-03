@@ -9,8 +9,15 @@ from choose import *
 from success import *
 from read import *
 from sql import *
+from have import *
 
-#导入成功
+class h_Dialog(QDialog,Ui_QDialog):
+    def __init__(self,parent=None):
+        super(h_Dialog, self).__init__()
+        self.setupUi(self)
+        self.exit.clicked.connect(self.close)
+
+#导入成功界面
 class success(QDialog,Ui_suDialog):
     def __init__(self,parent=None):
         super(success, self).__init__()
@@ -34,18 +41,33 @@ class CDialog(QDialog,Ui_Dialog):
         super(CDialog,self).__init__(parent)
         self.setupUi(self)
         self.file.clicked.connect(self.msg)
+        self.file_2.clicked.connect(self.msg_1)
         self.pushButton.clicked.connect(self.choose)
 
     def msg(self):
         directory = QFileDialog.getOpenFileName()
-        file=str(directory[0]).split(",")[0]
-        if file=="":
+        self.file=str(directory[0]).split(",")[0]
+        if self.file=="":
             pass
         else:
             dialogB = init_Dialog()
             dialogB.exec()
-            classes(file)
-            dialogB=success()
+            if classes(self.file)==0:
+                dialogB = h_Dialog()
+                dialogB.exec()
+            else:
+                dialogB=success()
+                dialogB.exec()
+    def msg_1(self):
+        directory = QFileDialog.getOpenFileName()
+        self.file=str(directory[0]).split(",")[0]
+        if self.file=="":
+            pass
+        else:
+            dialogB = init_Dialog()
+            dialogB.exec()
+            getdata(self.file)
+            dialogB = success()
             dialogB.exec()
 
     def choose(self):
@@ -60,6 +82,7 @@ class csDialog(QDialog,Ui_choose):
         self.setupUi(self)
         self.comboBox.addItems(get_class())
         self.cscs.clicked.connect(self.choose_class)
+        self.exit.clicked.connect(self.close)
     def choose_class(self):
         class_id=self.comboBox.currentText()
         ls_name=tongxue(class_id)

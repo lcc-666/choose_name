@@ -33,6 +33,3 @@ def get_class():
     for line in f.readlines():
         ls.append(line.replace("\n",""))
     return ls
-# file='/home/chaoge/github/choose_name/大数据20asd1.xlsx'
-#
-# classes(file)

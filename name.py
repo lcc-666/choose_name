@@ -17,7 +17,7 @@ class Ui_Dialog(object):
         Dialog.resize(640, 400)
         Dialog.setSizeGripEnabled(False)
         self.file = QtWidgets.QPushButton(Dialog)
-        self.file.setGeometry(QtCore.QRect(450, 50, 111, 51))
+        self.file.setGeometry(QtCore.QRect(450, 20, 121, 51))
         self.file.setObjectName("file")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(50, 30, 361, 81))
@@ -36,6 +36,9 @@ class Ui_Dialog(object):
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(440, 200, 121, 61))
         self.pushButton.setObjectName("pushButton")
+        self.file_2 = QtWidgets.QPushButton(Dialog)
+        self.file_2.setGeometry(QtCore.QRect(450, 90, 121, 51))
+        self.file_2.setObjectName("file_2")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -43,7 +46,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.file.setText(_translate("Dialog", "file"))
+        self.file.setText(_translate("Dialog", "导入信息"))
         self.label.setText(_translate("Dialog", "请选择班级excel(需包含学号以及姓名)"))
         self.label_2.setText(_translate("Dialog", "班级信息已到入导入"))
         self.pushButton.setText(_translate("Dialog", "开始点名"))
+        self.file_2.setText(_translate("Dialog", "强制导入"))
