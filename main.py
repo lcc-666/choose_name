@@ -3,16 +3,18 @@
 import sys
 import random
 from PyQt5.QtWidgets import QApplication,QDialog,QFileDialog
-from name import *
-from init import *
-from choose import *
-from success import *
+from conf.name import *
+from conf.init import *
+from conf.choose import *
+from conf.success import *
+from conf.have import *
+from conf.get_sucess import *
+from conf.please import *
+from conf.no_mate import *
+
 from read import *
 from sql import *
-from have import *
-from get_sucess import *
-from please import *
-from no_mate import *
+
 
 #请选择同学
 class no_mate(QDialog,Ui_no_Dialog):
@@ -56,19 +58,20 @@ class success(QDialog,Ui_suDialog):
 
     def countinue(self):
         self.close()
-        dialog=CDialog()
+        dialog=name_Dialog()
         dialog.exec()
 
 
 #导入界面
-class CDialog(QDialog,Ui_Dialog):
+class name_Dialog(QDialog,Ui_name):
     def __init__(self,parent=None):
-        super(CDialog,self).__init__(parent)
+        super(name_Dialog, self).__init__()
         self.setupUi(self)
         self.file.clicked.connect(self.msg)
         self.file_2.clicked.connect(self.msg_1)
         self.pushButton.clicked.connect(self.choose)
         self.exit.clicked.connect(self.close)
+        self.view.clicked.connect(self.open_excel)
 
     def msg(self):
         directory = QFileDialog.getOpenFileName()
@@ -100,6 +103,8 @@ class CDialog(QDialog,Ui_Dialog):
         self.close()
         dialog=csDialog()
         dialog.exec()
+
+
 
 #选择班级界面
 class csDialog(QDialog,Ui_choose):
@@ -147,6 +152,8 @@ class csDialog(QDialog,Ui_choose):
 
 
 
+
+
 #初始化等待界面
 class init_Dialog(QDialog,Ui_initDialog):
     def __init__(self,parent=None):
@@ -156,8 +163,6 @@ class init_Dialog(QDialog,Ui_initDialog):
 
 if __name__=="__main__":
     app=QtWidgets.QApplication(sys.argv)
-    Widget=CDialog()
+    Widget=name_Dialog()
     Widget.show()
     sys.exit(app.exec_())
-
-#
