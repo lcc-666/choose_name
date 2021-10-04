@@ -29,6 +29,7 @@ class Ui_Dialog(object):
         self.label.setFont(font)
         self.label.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.label.setTextFormat(QtCore.Qt.AutoText)
+        self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setGeometry(QtCore.QRect(50, 180, 351, 101))

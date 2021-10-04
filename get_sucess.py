@@ -16,7 +16,7 @@ class Ui_SDialog(object):
         SDialog.setObjectName("SDialog")
         SDialog.resize(484, 299)
         self.label = QtWidgets.QLabel(SDialog)
-        self.label.setGeometry(QtCore.QRect(100, 70, 281, 81))
+        self.label.setGeometry(QtCore.QRect(70, 50, 351, 91))
         font = QtGui.QFont()
         font.setPointSize(15)
         self.label.setFont(font)
