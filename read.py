@@ -2,7 +2,10 @@ import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
 def getdata(file):
-    df = pd.read_excel(file)[['学号', '姓名']]
+    try:
+        df = pd.read_excel(file)[['学号', '姓名']]
+    except KeyError:
+        df = pd.read_excel(file)[['姓名']]
     df['缺课']='0'
     # 建立连接，username替换为用户名，passwd替换为密码，test替换为数据库名
     conn = create_engine('mysql+pymysql://root:NRAHbsqt941@121.196.244.215:3306/name', encoding='utf8')

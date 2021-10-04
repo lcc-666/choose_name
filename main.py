@@ -12,6 +12,15 @@ from sql import *
 from have import *
 from get_sucess import *
 from please import *
+from no_mate import *
+
+#请选择同学
+class no_mate(QDialog,Ui_no_Dialog):
+    def __init__(self,parent=None):
+        super(no_mate, self).__init__()
+        self.setupUi(self)
+        self.exit.clicked.connect(self.close)
+
 #请选择班级
 class p_clase(QDialog,Ui_PDialog):
     def __init__(self,parent=None):
@@ -59,6 +68,7 @@ class CDialog(QDialog,Ui_Dialog):
         self.file.clicked.connect(self.msg)
         self.file_2.clicked.connect(self.msg_1)
         self.pushButton.clicked.connect(self.choose)
+        self.exit.clicked.connect(self.close)
 
     def msg(self):
         directory = QFileDialog.getOpenFileName()
@@ -122,14 +132,19 @@ class csDialog(QDialog,Ui_choose):
             dialog.exec()
 
     def arrive(self):
-        self.textB.setText("欢迎%s来上课"%self.name)
-
+        if self.name=="":
+            dialog=no_mate()
+            dialog.exec()
+        else:
+            self.textB.setText("欢迎%s来上课" % self.name)
     def lackkkk(self):
-        data=update(self.class_id, self.name)
-        self.textB.setText(self.name+"无故不到,缺课共%s次"%data)
+        if self.name=="":
+            dialog=no_mate()
+            dialog.exec()
+        else:
+            data=update(self.class_id, self.name)
+            self.textB.setText(self.name+"无故不到,缺课共%s次"%data)
 
-
-        pass
 
 
 #初始化等待界面
@@ -145,3 +160,4 @@ if __name__=="__main__":
     Widget.show()
     sys.exit(app.exec_())
 
+#
