@@ -10,7 +10,23 @@ from success import *
 from read import *
 from sql import *
 from have import *
+from get_sucess import *
+from please import *
+#请选择班级
+class p_clase(QDialog,Ui_PDialog):
+    def __init__(self,parent=None):
+        super(p_clase, self).__init__()
+        self.setupUi(self)
+        self.exit.clicked.connect(self.close)
 
+#班级信息获取成功
+class get_suce(QDialog,Ui_SDialog):
+    def __init__(self,parent=None):
+        super(get_suce, self).__init__()
+        self.setupUi(self)
+        self.exit.clicked.connect(self.close)
+
+#信息已存在
 class h_Dialog(QDialog,Ui_QDialog):
     def __init__(self,parent=None):
         super(h_Dialog, self).__init__()
@@ -77,18 +93,44 @@ class CDialog(QDialog,Ui_Dialog):
 
 #选择班级界面
 class csDialog(QDialog,Ui_choose):
+    ls_name=[]
+    name=''
+    class_id=''
     def __init__(self,parent=None):
         super(csDialog, self).__init__()
         self.setupUi(self)
         self.comboBox.addItems(get_class())
         self.cscs.clicked.connect(self.choose_class)
         self.exit.clicked.connect(self.close)
+        self.suiji.clicked.connect(self.choose_name)
+        self.arrived.clicked.connect(self.arrive)
+        self.lack.clicked.connect(self.lackkkk)
+
     def choose_class(self):
-        class_id=self.comboBox.currentText()
-        ls_name=tongxue(class_id)
-        name=random.choice(ls_name)
-        ls_name.remove(name)
-        print(name)
+        self.class_id=self.comboBox.currentText()
+        self.ls_name=tongxue(self.class_id)
+        dialog = get_suce()
+        dialog.exec()
+
+    def choose_name(self):
+        if len(self.ls_name)!=0:
+            self.name=random.choice(self.ls_name)
+            self.ls_name.remove(self.name)
+            self.textB.setText("此次的幸运儿是:"+self.name)
+        else:
+            dialog = p_clase()
+            dialog.exec()
+
+    def arrive(self):
+        self.textB.setText("欢迎%s来上课"%self.name)
+
+    def lackkkk(self):
+        data=update(self.class_id, self.name)
+        self.textB.setText(self.name+"无故不到,缺课共%s次"%data)
+
+
+        pass
+
 
 #初始化等待界面
 class init_Dialog(QDialog,Ui_initDialog):
