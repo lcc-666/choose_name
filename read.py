@@ -1,39 +1,56 @@
 import pandas as pd
+import numpy as np
+import openpyxl
 import pymysql
 from sqlalchemy import create_engine
-def getdata(file):
-    try:
-        df = pd.read_excel(file)[['学号', '姓名']]
-    except KeyError:
-        df = pd.read_excel(file)[['姓名']]
-    df['缺课']='0'
-    # 建立连接，username替换为用户名，passwd替换为密码，test替换为数据库名
-    conn = create_engine('mysql+pymysql://root:NRAHbsqt941@121.196.244.215:3306/name', encoding='utf8')
-    # 写入数据，table_name为表名，‘replace’表示如果同名表存在就替换掉
-    file=file.split("/")[-1].split(".")[0]
-    pd.io.sql.to_sql(df, file, conn, if_exists='replace')
+import os
 
+
+def init_calss(file):
+    df = pd.read_excel(file)[['姓名']]
+    df['缺课'] = '0'
+    name=file.split("/")[-1]
+    df.to_excel(excel_writer="./massage/"+name,index=False,)
 
 def classes(file):
-    f=open("classes.txt","r",encoding="utf8")
-    clas = file.split("/")[-1].split(".")[0]
-    ls=[]
-
-    for line in f.readlines():
-        ls.append(line.replace("\n",""))
-    f.close()
-    if clas in ls:
+    ls=os.listdir("massage")
+    name=file.split("/")[-1]
+    if name in ls:
         return 0
-    else:
-        f = open("classes.txt", "a+", encoding="utf8")
-        f.write(clas+"\n")
-        getdata(file)
 
 def get_class():
-    f=open("classes.txt","r",encoding="utf-8")
-    ls=[]
-
-    for line in f.readlines():
-        ls.append(line.replace("\n",""))
+    ls = os.listdir("massage")
     return ls
 
+
+def tongxue(class_id):
+    ls=[]
+    file="./massage/"+class_id
+    df = pd.read_excel(file)[['姓名']]
+    data_array=np.array(df)
+    data_list=data_array.tolist()
+    for i in data_list:
+        ls.append(i[0])
+    return ls
+
+def update(class_id,id):
+    file = "./massage/" + class_id
+    wb=openpyxl.load_workbook(file)
+    sheet=wb['Sheet1']
+    res=sheet.cell(id,2)
+    data=int(res.value)+1
+    sheet.cell(id,2).value=data
+    wb.save(file+"1")
+    wb.close()
+    os.remove(file)
+    os.rename(file+"1",file)
+    return data
+
+
+if __name__=="__main__":
+    file="D:/learn/choose_name-master/choose_name/大数据名单.xlsx"
+    class_id="大数据2001.xlsx"
+    id=24
+    #init_calss(file)
+    #classes(file)
+    print(update(class_id,id))

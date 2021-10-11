@@ -69,7 +69,7 @@ class Ui_name(object):
         _translate = QtCore.QCoreApplication.translate
         name.setWindowTitle(_translate("name", "Dialog"))
         self.file.setText(_translate("name", "导入信息"))
-        self.label.setText(_translate("name", "请选择班级excel(需包含学号以及姓名)"))
+        self.label.setText(_translate("name", "请选择班级或专业excel(需要至少包含姓名)"))
         self.label_2.setText(_translate("name", "班级信息已到入导入"))
         self.pushButton.setText(_translate("name", "开始点名"))
         self.file_2.setText(_translate("name", "强制导入"))

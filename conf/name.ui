@@ -52,7 +52,7 @@
     <locale language="Chinese" country="China"/>
    </property>
    <property name="text">
-    <string>请选择班级excel(需包含学号以及姓名)</string>
+    <string>请选择班级或专业excel(需要至少包含姓名)</string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
