@@ -12,9 +12,7 @@ from conf.get_sucess import *
 from conf.please import *
 from conf.no_mate import *
 from hint import *
-
 from read import *
-from sql import *
 
 #导入界面
 class name_Dialog(QDialog,Ui_name):
